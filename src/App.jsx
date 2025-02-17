@@ -1,35 +1,72 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Card from "./components/Card";
+import Header from "./components/Header";
+import Slider from "./components/Slider";
+import TitleDesc from "./components/TitleDesc";
+
+const cardData = [
+  {
+    id: 1,
+    title: "Life lessons with Katie Zaferes Life lessons with Katie Zaferes ",
+    image: "/images/cards/card1.png",
+    rating: 5,
+    price: 136,
+    count: 6,
+    status: "Sold Out",
+    country: "USA",
+    isOnline: false,
+  },
+  {
+    id: 2,
+    title: "Learn wedding photography",
+    image: "/images/cards/card2.png",
+    rating: 5,
+    price: 125,
+    count: 30,
+    status: "Online",
+    country: "USA",
+    isOnline: true,
+  },
+  {
+    id: 3,
+    title: "Group Mountain Biking",
+    image: "/images/cards/card3.png",
+    rating: 4.8,
+    price: 50,
+    count: 2,
+    country: "USA",
+    isOnline: false,
+  },
+];
+
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+   <>
+   <Header/>
+   <Slider />
+   <TitleDesc />
+   <div className="flex gap-4 items-center justify-center mt-10">
+        {cardData.map((card) => {
+          const { id, title, image, rating, price, count, country, isOnline } =
+            card;
+          return (
+            <Card
+              key={id}
+              title={title}
+              img={image}
+              rating={rating}
+              price={price}
+              voteCount={count}
+              location={country}
+              isOnline={isOnline}
+            />
+          );
+        })}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+   </>
+  );
 }
 
 export default App
